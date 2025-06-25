@@ -1,4 +1,4 @@
-import { getUser } from '@/lib/auth'
+import useSession from '@/hooks/useSession'
 import HomePage from '@/pages/home/HomePage'
 import LoginPage from '@/pages/login/LoginPage'
 import NotFound from '@/pages/not-found'
@@ -12,9 +12,10 @@ import {
 } from 'react-router'
 
 const ProtectedRoute = ({ children }: { children?: React.ReactNode }) => {
-  const user = getUser()
+  const { user } = useSession()
+  console.log(user)
 
-  if (!user) {
+  if (user === null) {
     console.error('Usuario no autenticado, redirigiendo al login...')
     return <Navigate to='/login' replace />
   }

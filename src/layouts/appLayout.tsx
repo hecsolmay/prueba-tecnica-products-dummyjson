@@ -9,7 +9,7 @@ export default function AppLayout () {
         <Navbar />
       </header>
 
-      <main className='max-w-7xl flex-1 px-6 py-8'>
+      <main className='flex-1 px-6 py-8'>
         <Outlet />
       </main>
       <Footer />

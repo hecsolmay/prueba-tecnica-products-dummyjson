@@ -45,7 +45,7 @@ export default defineConfig([
       ...eslintPluginBetterTailwindcss.configs['recommended-error'].rules,
 
       // or configure rules individually
-      'better-tailwindcss/enforce-consistent-line-wrapping': ['warn', { printWidth: 100 }]
+      'better-tailwindcss/enforce-consistent-line-wrapping': ['warn', { printWidth: 200 }]
     },
     settings: {
       'better-tailwindcss': {

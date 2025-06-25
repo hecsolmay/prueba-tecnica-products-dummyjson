@@ -1,4 +1,5 @@
 import useSession from '@/hooks/useSession'
+import AppLayout from '@/layouts/appLayout'
 import HomePage from '@/pages/home/HomePage'
 import LoginPage from '@/pages/login/LoginPage'
 import NotFound from '@/pages/not-found'
@@ -33,7 +34,10 @@ const router = createBrowserRouter(
       {/* ** PROTECTED ROUTES ** */}
 
       <Route element={<ProtectedRoute />}>
-        <Route path='/' index element={<HomePage />} />
+        {/* App Layout */}
+        <Route element={<AppLayout />}>
+          <Route path='/' index element={<HomePage />} />
+        </Route>
       </Route>
 
       {/* ** NOT FOUND ROUTES ** */}

@@ -14,7 +14,6 @@ import {
 
 const ProtectedRoute = ({ children }: { children?: React.ReactNode }) => {
   const { user } = useSession()
-  console.log(user)
 
   if (user === null) {
     console.error('Usuario no autenticado, redirigiendo al login...')

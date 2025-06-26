@@ -27,8 +27,6 @@ export default function useProducts () {
       prevSearch.current = query
       prevPage.current = page
 
-      console.log(searchParams.toString())
-
       try {
         const res = await ProductsService.getProducts({
           page,

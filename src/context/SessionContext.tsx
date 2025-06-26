@@ -21,7 +21,6 @@ export function SessionProvider ({ children }: { children: React.ReactNode }) {
 
   const login = async (credentials: { username: string; password: string }) => {
     const data = await AuthService.login(credentials)
-    console.log(data)
     // Para mejoras en el futuro se guarda el token y se actualizaría cuando expire
     saveLocalStorageUser(data)
     setUserState(data)

@@ -35,7 +35,6 @@ export class ProductsService {
 
     params.set('q', query)
 
-    console.log(`${BASE_URL}?${params.toString()}`)
     const res = await fetch(`${BASE_URL}?${params.toString()}`)
 
     if (!res.ok) throw new Error('No se pudieron obtener los productos')

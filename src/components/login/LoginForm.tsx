@@ -25,6 +25,7 @@ export default function LoginForm () {
         placeholder='••••••••'
         error={errors.password}
         value={formData.password}
+        allowShowPassword
         onChange={handleInputChange}
       />
 

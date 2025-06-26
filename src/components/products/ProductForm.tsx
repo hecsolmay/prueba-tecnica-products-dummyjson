@@ -5,6 +5,7 @@ import useProductForm from '@/hooks/useProductForm'
 import { ProductsService } from '@/services/products'
 import type { ProductCreateDto } from '@/types/product'
 import { useEffect, useState } from 'react'
+import { toast } from '@/lib/toast'
 
 export default function ProductForm () {
   const { defaultValues, mode, close, setSubmitting, isSubmitting } =
@@ -85,9 +86,19 @@ export default function ProductForm () {
         await ProductsService.updateProduct(formattedId, formDataWithoutId)
       }
       close()
+      const text =
+        mode === 'create'
+          ? 'Producto creado exitosamente'
+          : 'Producto actualizado exitosamente'
+      toast.success(text)
     } catch (err) {
       // mostrar notificación de error
-      console.error('Error al guardar producto', err)
+      const text =
+        mode === 'create'
+          ? 'Error al crear producto'
+          : 'Error al actualizar producto'
+      console.error(text, err)
+      toast.error(text)
     } finally {
       setSubmitting(false)
     }

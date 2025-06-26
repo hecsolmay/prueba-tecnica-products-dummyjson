@@ -32,7 +32,7 @@ export class ProductsService {
       params.set('skip', skip.toString())
     }
 
-    params.set('query', query)
+    params.set('q', query)
 
     console.log(`${BASE_URL}?${params.toString()}`)
     const res = await fetch(`${BASE_URL}?${params.toString()}`)

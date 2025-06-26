@@ -63,7 +63,7 @@ export default function Button ({
     <button
       className={cn(
         buttonVariants({ variant, size }),
-        isLoading && 'pointer-events-none',
+        isLoading && 'pointer-events-none relative',
         className
       )}
       {...props}

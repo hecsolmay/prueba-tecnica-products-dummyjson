@@ -7,7 +7,9 @@ interface GetProductsParams {
   query?: string
 }
 
-const BASE_URL = 'https://dummyjson.com/products/search'
+const BASE_URL = 'https://dummyjson.com/products'
+const CREATE_URL = `${BASE_URL}/add`
+const getUpdateUrl = (id: number) => `${BASE_URL}/${id}`
 
 const isValidNumber = (value: number) =>
   !isNaN(value) &&
@@ -35,7 +37,8 @@ export class ProductsService {
 
     params.set('q', query)
 
-    const res = await fetch(`${BASE_URL}?${params.toString()}`)
+    const searchUrl = `${BASE_URL}/search?${params.toString()}`
+    const res = await fetch(searchUrl)
 
     if (!res.ok) throw new Error('No se pudieron obtener los productos')
 
@@ -55,7 +58,7 @@ export class ProductsService {
   }
 
   static async createProduct (product: ProductCreateDto): Promise<Product> {
-    const res = await fetch('https://dummyjson.com/products/add', {
+    const res = await fetch(CREATE_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(product)
@@ -71,7 +74,7 @@ export class ProductsService {
     id: number,
     product: Partial<Omit<Product, 'id'>>
   ): Promise<Product> {
-    const updateUrl = `https://dummyjson.com/products/${id}`
+    const updateUrl = getUpdateUrl(id)
 
     const res = await fetch(updateUrl, {
       method: 'PUT',

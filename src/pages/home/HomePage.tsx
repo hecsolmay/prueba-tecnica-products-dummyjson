@@ -1,7 +1,12 @@
+import ProductsFilters from '@/components/products/ProductsFilters'
+import ProductsList from '@/components/products/productsList'
+
 export default function HomePage () {
   return (
-    <main>
-      <h1>Prueba técnica productos</h1>
-    </main>
+    <>
+      <h1 className='mb-6 text-2xl font-semibold'>Conoce nuestros productos</h1>
+      <ProductsFilters />
+      <ProductsList />
+    </>
   )
 }

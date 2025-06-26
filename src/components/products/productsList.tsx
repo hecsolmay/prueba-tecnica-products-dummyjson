@@ -37,7 +37,7 @@ export default function ProductsList () {
 
       >
         {products.map(product => (
-          <ProductCard key={product.id} product={product} onEdit={(id) => console.log('Edit product', id)} />
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
 

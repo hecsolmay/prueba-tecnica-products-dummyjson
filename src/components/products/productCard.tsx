@@ -1,13 +1,15 @@
 import Button from '@/components/ui/Button'
+import useProductForm from '@/hooks/useProductForm'
 import type { Product } from '@/types/product'
 import { Edit3 } from 'lucide-react'
 
 interface ProductCardProps {
   product: Product
-  onEdit: (id: number) => void
 }
 
-export default function ProductCard ({ product, onEdit }: ProductCardProps) {
+export default function ProductCard ({ product }: ProductCardProps) {
+  const { openEdit } = useProductForm()
+
   return (
     <div
       className={`
@@ -27,7 +29,7 @@ export default function ProductCard ({ product, onEdit }: ProductCardProps) {
 
         {/* Edit button */}
         <button
-          onClick={() => onEdit(product.id)}
+          onClick={() => openEdit(product)}
           className={`
             absolute top-3 right-3 rounded-full bg-white/90 p-2 opacity-0 shadow-md backdrop-blur-sm transition-all duration-200
             group-hover:opacity-100

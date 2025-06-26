@@ -10,6 +10,8 @@ export default function Pagination ({ totalPages }: PaginationProps) {
   const [searchParams, setSearchParams] = useSearchParams()
   const page = Number(searchParams.get('page')) || 1
   const currentPage = page > 0 ? page : 1
+  const hasPreviousPage = currentPage > 1
+  const hasNextPage = currentPage < totalPages
 
   const updatePage = (page: number) => {
     const newParams = new URLSearchParams(searchParams)
@@ -24,7 +26,7 @@ export default function Pagination ({ totalPages }: PaginationProps) {
     <div className='flex items-center justify-center space-x-2'>
       <button
         onClick={() => updatePage(currentPage - 1)}
-        disabled={currentPage === 1}
+        disabled={!hasPreviousPage}
         className={`
           flex items-center rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-500 transition-colors duration-200
           hover:bg-gray-50 hover:text-gray-700
@@ -68,11 +70,11 @@ export default function Pagination ({ totalPages }: PaginationProps) {
 
       <button
         onClick={() => updatePage(currentPage + 1)}
-        disabled={currentPage === totalPages}
+        disabled={!hasNextPage}
         className={`
           flex items-center rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-500 transition-colors duration-200
           hover:bg-gray-50 hover:text-gray-700
-          disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-white disabled:hover:text-gray-500
+          disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-white disabled:hover:text-gray-500
         `}
       >
         Siguiente

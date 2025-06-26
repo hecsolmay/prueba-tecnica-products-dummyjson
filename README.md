@@ -1,69 +1,61 @@
-# React + TypeScript + Vite
+# 🛠️ Prueba técnica - Gestión de productos con React + DummyJSON
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una prueba técnica realizada en React utilizando la API pública de [DummyJSON](https://dummyjson.com) para implementar una interfaz básica de autenticación, listado y gestión de productos.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Funcionalidades implementadas
 
-## Expanding the ESLint configuration
+### ✅ 1. Login de usuario
+- Validación de campos (`username`, `password`)
+- Consumo del endpoint `https://dummyjson.com/auth/login`
+- Manejo de sesión con `localStorage`
+- Rutas protegidas usando `react-router`
+- Navbar con nombre del usuario logueado y opción de cerrar sesión
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🖼️ *Demostración del flujo de inicio de sesión con validación y sesión persistente:*
+![demo - login](https://github.com/user-attachments/assets/46205787-2392-462c-9c11-207f04b29c66)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### ✅ 2. Lista de productos
+- Visualización en tarjetas con datos de cada producto
+- Paginación sincronizada con la URL usando `searchParams`
+- Filtro por búsqueda con `debounce`
+- Diseño responsive: grid dinámico con `minmax(350px, 1fr)`
+- Botón "Editar" para cada producto
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+🖼️ *Visualización de productos con búsqueda, filtros y paginación sincronizada con la URL:*
+![demo - paginacion- filtros](https://github.com/user-attachments/assets/c86bc396-1ec2-4fde-acf6-21e55b4f99b6)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### ✅ 3. Crear o editar producto
+- Modal único controlado por contexto (`ProductFormContext`)
+- Formulario reutilizable que soporta:
+  - Creación (`POST`)
+  - Edición (`PATCH`)
+  - Carga de imagen local con previsualización (`URL.createObjectURL`)
+- Validaciones manuales en el formulario
+- Modal bloqueado durante el envío (`isSubmitting`)
+- Pre-carga de valores para edición
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+🖼️ *Creación de un nuevo producto desde el modal:*
+![Demo - create](https://github.com/user-attachments/assets/ddce28b1-00f5-476b-b6e0-d8dcc621ef86)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+🖼️ *Actualización de producto existente con valores precargados:*
+![Demo - update](https://github.com/user-attachments/assets/2ede432d-1a30-4463-a312-f0096918ae23)
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### ✅ 4. Notificaciones
+- Mensajes de éxito o error usando `sonner`
+- Validación visual de errores en campos
+
+---
+
+## 🧪 Tecnología usada
+
+- **React 19** con Vite + TypeScript
+- **React Router v7 declarativo**
+- **TailwindCSS v4**
+- **Lucide React** para íconos
+- **Sonner** para notificaciones
+- `URLSearchParams` para sincronización de filtros con la URL
+- Arquitectura modular con `context`, `hooks`, `services`, `components`
+
+

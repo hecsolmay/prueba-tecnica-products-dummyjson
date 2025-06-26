@@ -1,6 +1,6 @@
 import { ProductsService } from '@/services/products'
 import type { Product } from '@/types/product'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router'
 
 const DEFAULT_LIMIT = 15
@@ -10,6 +10,8 @@ export default function useProducts () {
   const [total, setTotal] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const prevSearch = useRef<string | null>(null)
+  const prevPage = useRef<number | null>(null)
 
   const [searchParams, setSearchParams] = useSearchParams()
 
@@ -20,6 +22,12 @@ export default function useProducts () {
     const fetchData = async () => {
       setIsLoading(true)
       setError(null)
+
+      if (prevSearch.current === query && prevPage.current === page) return
+      prevSearch.current = query
+      prevPage.current = page
+
+      console.log(searchParams.toString())
 
       try {
         const res = await ProductsService.getProducts({

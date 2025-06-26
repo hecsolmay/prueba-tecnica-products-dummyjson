@@ -1,3 +1,4 @@
+import type { Product, ProductCreateDto } from '@/types/product'
 import type { ProductMapResponse, ProductsResponse } from '@/types/response'
 
 interface GetProductsParams {
@@ -52,5 +53,41 @@ export class ProductsService {
       skip: (page - 1) * limit,
       limit
     }
+  }
+
+  static async createProduct (product: ProductCreateDto): Promise<Product> {
+    const res = await fetch('https://dummyjson.com/products/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(product)
+    })
+
+    if (!res.ok) throw new Error('No se pudieron crear el producto')
+
+    const data = await res.json()
+    return data
+  }
+
+  static async updateProduct (
+    id: number,
+    product: Partial<Omit<Product, 'id'>>
+  ): Promise<Product> {
+    const updateUrl = `https://dummyjson.com/products/${id}`
+
+    const res = await fetch(updateUrl, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer dummy' },
+      body: JSON.stringify(product)
+    })
+
+    if (!res.ok) {
+      const errorText = await res.text()
+      console.error('Error status:', res.status)
+      console.error('Error body:', errorText)
+      throw new Error('No se pudo actualizar el producto')
+    }
+
+    const data = await res.json()
+    return data
   }
 }

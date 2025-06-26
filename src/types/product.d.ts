@@ -10,3 +10,5 @@ export interface Product {
 export interface ProductDummyResult extends Omit<Product, 'imageUrl'> {
   images: string[]
 }
+
+export type ProductCreateDto = Omit<Product, 'thumbnail'>

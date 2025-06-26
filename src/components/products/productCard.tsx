@@ -49,7 +49,7 @@ export default function ProductCard ({ product, onEdit }: ProductCardProps) {
           {product.title}
         </h3>
 
-        <p className='mb-4 line-clamp-3 min-h-20 text-sm leading-relaxed text-gray-600'>
+        <p className='mb-4 line-clamp-3 h-[72px] text-sm leading-relaxed text-gray-600'>
           {product.description}
         </p>
 

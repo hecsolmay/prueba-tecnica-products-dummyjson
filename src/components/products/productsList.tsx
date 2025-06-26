@@ -3,6 +3,12 @@ import ProductCard from '@/components/products/productCard'
 import Spinner from '@/components/ui/Spinner'
 import useProducts from '@/hooks/useProducts'
 
+const ProductListEmpty = () => (
+  <div className='flex min-h-[50dvh] w-full items-center justify-center'>
+    <span className='text-sm text-gray-500'>No hay productos para mostrar</span>
+  </div>
+)
+
 export default function ProductsList () {
   const { data: products, isLoading, totalPages } = useProducts()
 
@@ -13,6 +19,10 @@ export default function ProductsList () {
         <span className='ml-2 text-sm text-gray-500'>Cargando productos...</span>
       </div>
     )
+  }
+
+  if (products.length === 0) {
+    return <ProductListEmpty />
   }
 
   return (

@@ -188,6 +188,7 @@ export default function ProductForm () {
             variant={mode === 'create' ? 'primary' : 'warning'}
             size='md'
             isLoading={isSubmitting}
+            disabled={isSubmitting}
           >
             {mode === 'create' ? 'Crear' : 'Actualizar'}
           </Button>

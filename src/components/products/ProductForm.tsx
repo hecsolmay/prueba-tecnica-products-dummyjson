@@ -105,9 +105,8 @@ export default function ProductForm () {
   }
 
   const handleImageChange = (files: FileList | null) => {
-    if (files === null || files?.length === 0) return
-
     setFiles(files)
+    if (files === null || files?.length === 0) return
     setErrors(prev => ({ ...prev, imageUrl: '' }))
     const file = files[0]
 
